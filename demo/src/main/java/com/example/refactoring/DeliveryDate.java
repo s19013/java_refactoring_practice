@@ -10,15 +10,10 @@ import java.util.Arrays;
 // 配達日?
 public class DeliveryDate {
 	public LocalDate getDeliveryDate(){
-		LocalDate localDate = LocalDate.now();
+		LocalDate localDate = this.getNow();
 		int day = localDate.getDayOfMonth();
 		Month month = localDate.getMonth();
 		int year = localDate.getYear();
-
-//		System.out.println("localDate:" + localDate);
-//		System.out.println("day:" + day);
-//		System.out.println("month:" + month);
-//		System.out.println("year:" + year);
 
 		// この荷物は来月に回すのか?
 		if (this.isItMoveToNextMonth(month,day)) { month.plus(1L); }
@@ -52,5 +47,10 @@ public class DeliveryDate {
 	private int EndofFebruary(int year){
 		if(year%4 == 0) return 29;
 		return 28 ;
+	}
+
+//	テストで上書きするため
+	protected LocalDate getNow(){
+		return LocalDate.now();
 	}
 }
