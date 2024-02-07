@@ -1,5 +1,6 @@
 package com.example.refactoring;
 
+import java.time.temporal.TemporalAdjusters;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
@@ -16,37 +17,18 @@ public class DeliveryDate {
 		int year = localDate.getYear();
 
 		// この荷物は来月に回すのか?
-		if (this.isItMoveToNextMonth(month,day)) { month.plus(1L); }
+		if (this.isItMoveToNextMonth(month,day)) {localDate = localDate.plusMonths(1);}
 
-		// 月末の日付を撮ってる?
-		if (this.isOnotuki(year,month)){
-			return LocalDate.of(localDate.getYear(),localDate.getMonth(),30);
-		}
-
-		if(month.equals(Month.FEBRUARY)){
-			return LocalDate.of(localDate.getYear(),localDate.getMonth(),this.EndofFebruary(year));
-		}
-
-		return LocalDate.of(localDate.getYear(),localDate.getMonth(),31);
-	}
-
-	private boolean isOnotuki(int year, Month month){
-		Month onotukiList[] = {Month.APRIL,Month.JUNE,Month.SEPTEMBER,Month.NOVEMBER};
-		return Arrays.asList(onotukiList).contains(month);
+		return localDate.with(TemporalAdjusters.lastDayOfMonth());
 	}
 
 	private boolean isItMoveToNextMonth(Month month, int day){
 		// 25以降の荷物は来月運ぶ?
 		if(day >= 25) return true ;
 		//年末の荷物は来年へ
-		if (month.equals(Month.DECEMBER) && day >= 20) return true ;
+		if (month.equals(Month.DECEMBER) && day >= 20) return true;
 
 		return false ;
-	}
-
-	private int EndofFebruary(int year){
-		if(year%4 == 0) return 29;
-		return 28 ;
 	}
 
 //	テストで上書きするため
