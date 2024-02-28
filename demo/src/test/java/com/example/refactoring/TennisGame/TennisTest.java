@@ -54,6 +54,8 @@ public class TennisTest {
 
     private static void checkAllScores(int player1Points, int player2Points, String expectedScore, TennisGame game) {
         int highestScore = Math.max(player1Points, player2Points);
+        // これさ､いちいちforで回す必要なくない?
+        // setterで値設定すればいいだけじゃん
         for (int i = 0; i < highestScore; i++) {
             if (i < player1Points)
                 game.wonPoint("player1");
