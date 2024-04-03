@@ -10,7 +10,7 @@ public class GildedRose {
 
 //    さっさと次に行ってほっしためelseではなくcontinue
 //    かぶることもないので
-    public void OneDayHasPassed(){
+    public void oneDayHasPassed(){
         for (int i = 0; i < items.length; i++) {
 
 
