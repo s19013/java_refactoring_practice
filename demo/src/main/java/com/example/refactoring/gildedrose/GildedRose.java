@@ -10,8 +10,13 @@ public class GildedRose {
 
 //    さっさと次に行ってほっしためelseではなくcontinue
 //    かぶることもないので
+//    sellInはquary計算で参照するので｢日数を減らしてから｣というのはできない
     public void oneDayHasPassed(){
         for (int i = 0; i < items.length; i++) {
+            if (items[i].name.contains("Sulfuras")) {
+                items[i].sellIn -= 1;
+                continue;
+            }
 
 
             if (items[i].name.contains("Backstage")){
