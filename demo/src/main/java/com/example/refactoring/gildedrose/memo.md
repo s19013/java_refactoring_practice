@@ -44,7 +44,8 @@ Backstage passesは以下の法則で値が変化する
 これ最終日はsellIn == 0 のこと?  
 それともsellIn == 1 のこと?
 
-1. sellinが0以上か
+
+2. sulfurasか
 3. Backstageか
 4. Aged Brieか
 5. それ以外の商品の処理
