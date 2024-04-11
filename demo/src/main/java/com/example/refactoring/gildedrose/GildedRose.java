@@ -52,55 +52,46 @@ public class GildedRose {
 //    とりあえずここではsellIn == 0と仮定する
     public Item isBackStage(Item item){
         if (item.sellIn > 10){
-            return updateQuality(item,1);
+            return increaseQuality(item,1);
         }
 
 //        残り10日
         if (10>= item.sellIn && item.sellIn >5){
-            return updateQuality(item,2);
+            return increaseQuality(item,2);
         }
 
 //        残り5日
         if (5 >= item.sellIn && item.sellIn > 0){
-            return updateQuality(item,3);
+            return increaseQuality(item,3);
         }
 
 //        最終日
 //      0にするため今の値をすべて引く
-        return updateQuality(item,-(item.quality));
-
-
+        return decreaseQuality(item,item.quality);
     }
 
     public Item isAgedBrie(Item item){
-        return updateQuality(item,1);
+        return increaseQuality(item,1);
     }
 
     public Item isOther(Item item){
-        return updateQuality(item,-1);
+        return decreaseQuality(item,2);
     }
 
-    public Item updateQuality(Item item,Integer day){
-        //  Conjured製かどうかはここで判断したほうがわかりやすいかと
-        if (item.name.contains("Conjured")) {
-            item.quality += day*2;
-        } else {
-            item.quality += day;
-        }
-
-//        値が規定範囲内かどうか調べる
-        item.quality = this.qualityAdjustment(item.quality);
-
+    public Item increaseQuality(Item item,Integer value){
+        if (item.name.contains("Conjured")) { item.quality += value*2; }
+        else { item.quality += value; }
+//        50より上には上がらないため整える
+        if (item.quality > 50 ) {item.quality = 50;}
         return item;
     }
 
-    public Integer qualityAdjustment(Integer day){
-//        0未満
-        if (day < 0 ) return 0;
-//        50より上
-        if (day > 50 ) return 50;
-
-        return day;
+    public Item decreaseQuality(Item item,Integer value) {
+        if (item.name.contains("Conjured")) {item.quality -= value*2;}
+        else {item.quality -= value;}
+        //        0より下には下がらないため整える
+        if (item.quality < 0 ) {item.quality = 0;}
+        return item;
     }
 
 }
