@@ -2,10 +2,16 @@ package com.example.refactoring.gildedrose;
 
 public class GildedRose {
     Item[] items;
+//    テスト用変数
+    Integer[][] answerBook;
 
     public GildedRose(Item[] items) {
         this.items = items;
     }
+
+    //    テスト用関数
+    public void setAnswerBook(Integer[][] anserBook) { this.answerBook = anserBook;}
+
 
 
 //    さっさと次に行ってほっしためelseではなくcontinue
@@ -13,6 +19,8 @@ public class GildedRose {
 //    sellInはquary計算で参照するので｢日数を減らしてから｣というのはできない
     public void oneDayHasPassed(){
         for (int i = 0; i < items.length; i++) {
+
+//            sulfurasは変化しないから無視
             if (items[i].name.contains("Sulfuras")) {
                 items[i].sellIn -= 1;
                 continue;
