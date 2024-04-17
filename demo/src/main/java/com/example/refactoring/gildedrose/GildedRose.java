@@ -2,16 +2,10 @@ package com.example.refactoring.gildedrose;
 
 public class GildedRose {
     Item[] items;
-//    テスト用変数
-    Integer[][] answerBook;
 
     public GildedRose(Item[] items) {
         this.items = items;
     }
-
-    //    テスト用関数
-    public void setAnswerBook(Integer[][] anserBook) { this.answerBook = anserBook;}
-
 
 
 //    さっさと次に行ってほっしためelseではなくcontinue
@@ -56,12 +50,12 @@ public class GildedRose {
         }
 
 //        残り10日
-        if (10>= item.sellIn && item.sellIn >5){
+        if (5< item.sellIn && item.sellIn <= 10) {
             return increaseQuality(item,2);
         }
 
 //        残り5日
-        if (5 >= item.sellIn && item.sellIn > 0){
+        if (0 < item.sellIn && item.sellIn <=5){
             return increaseQuality(item,3);
         }
 
