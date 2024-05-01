@@ -45,12 +45,13 @@ public class GildedRose {
 //    それともsellIn == 1 のこと?
 //    とりあえずここではsellIn == 0と仮定する
     public Item isBackStage(Item item){
-        if (item.sellIn > 10){
+//        残り11日以上
+        if (11 <= item.sellIn){
             return increaseQuality(item,1);
         }
 
 //        残り10日
-        if (5< item.sellIn && item.sellIn <= 10) {
+        if (6<= item.sellIn && item.sellIn <= 10) {
             return increaseQuality(item,2);
         }
 
